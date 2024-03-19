@@ -1,27 +1,31 @@
 from zooAnimales.animal import Animal
+
 class Mamifero(Animal):
-    caballos=0
-    leones=0
-    _listado=[]
-    def __init__(self,nombre=None,edad=None, habitat=None,genero=None,pelaje=None, patas=None):
-        super(). __init__(self,nombre,edad, habitat,genero,)
-        self._pelaje=pelaje
-        self._patas= patas
-        Mamifero._listado.append(self)
-    
+    caballos = 0
+    leones = 0
+    _listado = []
+    def __init__(self, nombre, edad, habitat, genero, pelaje, patas):
+        super().__init__(nombre, edad, habitat, genero)
+        self._pelaje = pelaje
+        self._patas = patas
     @classmethod
     def cantidadMamiferos(cls):
-        return len(cls._listado)
-        
-    @classmethod
-    def crearCaballo(cls,nombre,edad,genero,):
-        cls.caballos+=1
-        return Mamifero(nombre,edad,"selva",genero,True,4)
-    @classmethod
-    def crearLeon(cls, nombre, edad, genero):
-        cls.leones=+1
-        animalito=Mamifero(nombre,edad,"selva",genero,True,4)
-        return animalito
+        cantidadMamiferos = 0
+        for mamifero in cls._listado:
+            cantidadMamiferos += 1
+        return cantidadMamiferos
+    
+    def crearCaballo( nombre, edad, genero):
+        mamifero = Mamifero(nombre, edad, "pradera" , genero, True, 4)
+        Mamifero._listado.append(mamifero)
+        Mamifero.caballos += 1
+        return mamifero
+
+    def crearLeon( nombre, edad, genero):
+        mamifero = Mamifero(nombre, edad, "selva" , genero, True, 4)
+        Mamifero._listado.append(mamifero)
+        Mamifero.leones += 1
+        return mamifero
     
     @classmethod
     def  getListado(cls):
@@ -37,3 +41,19 @@ class Mamifero(Animal):
         return self._patas
     def setPatas(self,patas):
         self._patas = patas
+    def getNombre(self):
+        return super().getNombre()
+    def setNombre(nombre):
+        super().setNombre(self,nombre)
+    def getEdad(self):
+        return super().getEdad()
+    def setEdad(edad):
+        super().setEdad(self,edad)
+    def getHabitat(self):
+        return super().getHabitat()
+    def setHabitat(habitat):
+        super().setHabitat(self,habitat)
+    def getGenero(self):
+        return super().getGenero()
+    def setGenero(genero):
+        super().setGenero(self,genero)
